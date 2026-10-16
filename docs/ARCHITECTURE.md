@@ -19,4 +19,4 @@ flowchart LR
 
 **Decisões explícitas:** Spark roda em contêiner para evitar dependência de `winutils` no Windows; Airflow aciona contêineres para Silver, Gold e exportação; o volume Docker mantém arquivos Delta em filesystem Linux para evitar problemas de visibilidade de arquivos no bind mount do Windows. Consulte o código e [Gold](gold.md) para os limites já documentados.
 
-**Estado:** os arquivos de implementação existem, mas esta publicação não afirma uma execução contra fonte real nem homologa indicadores. A vitrine estática descreve o código e seus limites. Great Expectations, streaming e cloud permanecem no roadmap.
+**Estado:** os arquivos de implementação existem, mas esta publicação não afirma uma execução contra fonte real nem homologa indicadores. A página estática descreve o código e seus limites; ela não imita o dashboard. Great Expectations, streaming e cloud permanecem no roadmap.

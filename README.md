@@ -2,18 +2,17 @@
 
 **Laboratório de Engenharia de Dados: PostgreSQL → Bronze Delta → Silver PySpark → Gold dbt → análise.**
 
-[![Explorar arquitetura](https://img.shields.io/badge/Explorar-arquitetura%20interativa-9de4e7?style=for-the-badge&labelColor=112c45)](https://leandroavalle.github.io/esus-data-platform-lab/)
+[![Estudo de caso](https://img.shields.io/badge/Estudo-de%20caso-9de4e7?style=for-the-badge&labelColor=112c45)](https://leandroavalle.github.io/esus-data-platform-lab/)
 [![CI](https://github.com/LeandroAValle/esus-data-platform-lab/actions/workflows/verify.yml/badge.svg)](https://github.com/LeandroAValle/esus-data-platform-lab/actions/workflows/verify.yml)
 
-![Prévia da arquitetura do laboratório](docs/architecture-preview.png)
 
-> **Projeto em desenvolvimento.** O código de ingestão, processamento, modelos, orquestração e consumo está presente neste repositório. A vitrine online usa apenas metadados do código, sem executar o pipeline nem exibir dados de saúde.
+> **Projeto em desenvolvimento.** O código de ingestão, processamento, modelos, orquestração e consumo está presente neste repositório. A página pública documenta o código e as decisões; ela não representa a interface do dashboard Streamlit. Nenhum dado de saúde é exibido.
 
 ## Veja primeiro
 
 | Recurso | Acesso |
 | --- | --- |
-| Visão interativa das camadas | [Abrir a vitrine](https://leandroavalle.github.io/esus-data-platform-lab/) |
+| Estudo de caso e arquitetura documentada | [Abrir a página](https://leandroavalle.github.io/esus-data-platform-lab/) |
 | DAG manual de ponta a ponta | [`dags/esus_pipeline_dag.py`](dags/esus_pipeline_dag.py) |
 | Modelos analíticos | [`dbt/models/marts/`](dbt/models/marts/) |
 | Política de publicação e privacidade | [Publicação segura](docs/PUBLICATION.md) |
@@ -43,7 +42,7 @@ python -m compileall -q src dags
 python -m http.server 8000 --directory site
 ```
 
-Abra `http://localhost:8000` para explorar a arquitetura. Estes comandos não se conectam a banco. Para executar o pipeline completo é necessária uma fonte e-SUS autorizada, configuração local em `.env` e revisão de privacidade; a base sintética mínima de `docker/postgres/init/` valida apenas o ambiente Docker e não substitui o esquema e-SUS usado pela ingestão.
+Abra `http://localhost:8000` para consultar o estudo de caso e os links para o código. Estes comandos não se conectam a banco. Para executar o pipeline completo é necessária uma fonte e-SUS autorizada, configuração local em `.env` e revisão de privacidade; a base sintética mínima de `docker/postgres/init/` valida apenas o ambiente Docker e não substitui o esquema e-SUS usado pela ingestão.
 
 ---
 
