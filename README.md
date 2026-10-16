@@ -1,12 +1,18 @@
 # eSUS Data Platform Lab
 
-**Laboratório de Engenharia de Dados: PostgreSQL → Bronze Delta → Silver PySpark → Gold dbt → análise.**
+**Lakehouse de estudo para transformar dados autorizados do e-SUS em tabelas analíticas rastreáveis para a gestão da Atenção Primária.**
 
 [![Estudo de caso](https://img.shields.io/badge/Estudo-de%20caso-9de4e7?style=for-the-badge&labelColor=112c45)](https://leandroavalle.github.io/esus-data-platform-lab/)
 [![CI](https://github.com/LeandroAValle/esus-data-platform-lab/actions/workflows/verify.yml/badge.svg)](https://github.com/LeandroAValle/esus-data-platform-lab/actions/workflows/verify.yml)
 
 
 > **Projeto em desenvolvimento.** O código de ingestão, processamento, modelos, orquestração e consumo está presente neste repositório. A página pública documenta o código e as decisões; ela não representa a interface do dashboard Streamlit. Nenhum dado de saúde é exibido.
+
+## Finalidade
+
+O laboratório demonstra como equipes de engenharia de dados podem organizar dados autorizados do e-SUS em camadas Bronze, Silver e Gold, com validação e transformações reproduzíveis. Os modelos Gold destinam-se à análise e à produção de indicadores que apoiem a gestão da Atenção Primária.
+
+**Problema que aborda:** transforma um fluxo de dados difícil de rastrear em etapas explícitas, testáveis e documentadas. A fonte precisa ser autorizada e configurada; esta vitrine não contém dados de saúde.
 
 ## Veja primeiro
 
@@ -45,12 +51,6 @@ python -m http.server 8000 --directory site
 Abra `http://localhost:8000` para consultar o estudo de caso e os links para o código. Estes comandos não se conectam a banco. Para executar o pipeline completo é necessária uma fonte e-SUS autorizada, configuração local em `.env` e revisão de privacidade; a base sintética mínima de `docker/postgres/init/` valida apenas o ambiente Docker e não substitui o esquema e-SUS usado pela ingestão.
 
 ---
-
-Plataforma de Engenharia de Dados que transforma dados operacionais do e-SUS em dados tratados, confiáveis e indicadores estratégicos para apoio à gestão da Atenção Primária à Saúde (APS).
-
-Case de Data Engineering usando arquitetura Lakehouse (Bronze/Silver/Gold), ETL/ELT, processamento distribuído e orquestração. Qualidade ampliada, cloud e DataOps seguem em evolução.
-
-> Use dados sintéticos ou uma fonte expressamente autorizada e protegida. Projeto de estudo/portfólio.
 
 ## Arquitetura
 
