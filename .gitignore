@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Data (local, não versionado)
+data/raw/*
+data/lakehouse/*
+data/silver/*
+data/gold/*
+!data/**/.gitkeep
+
+# Exports (gerados, não versionados)
+exports/
+
+# dbt
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+dbt/.user.yml
+
+# Delta Lake / Spark
+*.parquet
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Airflow
+airflow.db
+airflow.cfg
+logs/
+!dags/**
+dags/__pycache__/
+dags/**/*.pyc
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# Docker
+docker/.env
+docker/airflow/.env
+
+# Fonte real e credenciais
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

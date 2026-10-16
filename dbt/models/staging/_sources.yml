@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: silver
+    meta:
+      external_location: "delta_scan('data/lakehouse/silver/{name}')"
+    tables:
+      - name: cidadao
+      - name: unidade_saude
+      - name: equipe
+      - name: profissional
+      - name: lotacao
+      - name: atendimento
+      - name: atendimento_profissional
+      - name: vacinacao
+      - name: pre_natal
+      - name: visita_domiciliar
+      - name: problema
+      - name: condicoes_saude_auto
+
+  - name: bronze
+    meta:
+      external_location: "delta_scan('data/lakehouse/bronze/{name}')"
+    tables:
+      - name: tb_prontuario
+      - name: tb_cid10
+      - name: tb_ciap
+      - name: tb_vacinacao

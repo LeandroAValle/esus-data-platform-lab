@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: esus-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-esus}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in docker/.env}
+      POSTGRES_DB: ${POSTGRES_DB:-esus}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - esus-postgres-data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-esus} -d ${POSTGRES_DB:-esus}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - esus-net
+
+  adminer:
+    image: adminer:4
+    container_name: esus-adminer
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${ADMINER_PORT:-8080}:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - esus-net
+
+networks:
+  esus-net:
+    name: esus-net
+
+volumes:
+  esus-postgres-data:
+    name: esus-postgres-data

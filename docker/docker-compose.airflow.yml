@@ -1,0 +1,45 @@
+services:
+  airflow:
+    build:
+      context: ..
+      dockerfile: docker/airflow/Dockerfile
+    container_name: esus-airflow
+    restart: unless-stopped
+    command: standalone
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
+      PROJECT_HOST_PATH: ${PROJECT_HOST_PATH}
+      SPARK_IMAGE: esus-spark
+      STREAMLIT_IMAGE: docker-streamlit
+    env_file:
+      - airflow/.env
+    ports:
+      - "127.0.0.1:8081:8080"
+    volumes:
+      - ../dags:/opt/airflow/dags
+      - ..:/opt/airflow/project
+      # data/ fica num named volume (filesystem nativo do Docker Desktop),
+      # não no bind-mount do Windows — delta-rs (Rust) escreve o arquivo
+      # parquet e comita no _delta_log, mas em bind-mount Windows o stat
+      # seguinte pode não enxergar o arquivo ainda (race de visibilidade
+      # entre o host e a VM Linux do Docker Desktop). Named volume evita
+      # essa tradução de filesystem por completo.
+      - esus-data:/opt/airflow/project/data
+      - airflow-home:/opt/airflow
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - esus-net
+
+networks:
+  esus-net:
+    external: true
+    name: esus-net
+
+volumes:
+  airflow-home:
+    name: esus-airflow-home
+  esus-data:
+    name: esus-data
+

@@ -1,0 +1,17 @@
+name: esus_gold
+version: "1.0.0"
+config-version: 2
+profile: esus_gold
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  esus_gold:
+    staging:
+      +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: gold

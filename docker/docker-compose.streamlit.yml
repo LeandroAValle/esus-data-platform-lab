@@ -1,0 +1,27 @@
+services:
+  streamlit:
+    build:
+      context: ..
+      dockerfile: docker/streamlit/Dockerfile
+    container_name: esus-streamlit
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8501:8501"
+    volumes:
+      - ..:/app
+      # mesmo named volume usado pelo Airflow/Spark — evita a race de
+      # bind-mount Windows e sempre lê os dados mais recentes gerados
+      # pela DAG (ver docker/docker-compose.airflow.yml).
+      - esus-data:/app/data
+    networks:
+      - esus-net
+
+networks:
+  esus-net:
+    external: true
+    name: esus-net
+
+volumes:
+  esus-data:
+    external: true
+    name: esus-data

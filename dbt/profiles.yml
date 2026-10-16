@@ -1,0 +1,8 @@
+esus_gold:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "data/lakehouse/gold.duckdb"
+      extensions:
+        - delta
